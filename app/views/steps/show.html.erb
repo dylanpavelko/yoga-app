@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pose:</strong>
+  <%= link_to @step.pose.english_name, @step.pose %>
+</p>
+
+<p>
+  <strong>Direction:</strong>
+  <%= @step.direction %>
+</p>
+
+<p>
+  <strong>Setup time:</strong>
+  <%= @step.setup_time %>
+</p>
+
+<p>
+  <strong>Pose time:</strong>
+  <%= @step.pose_time %>
+</p>
+
+<%= link_to 'Edit', edit_step_path(@step) %> |
+<%= link_to 'Back', steps_path %>

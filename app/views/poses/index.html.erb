@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Poses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>English name</th>
+      <th>Sanskrit name</th>
+      <th>Sanskrit pronunciation</th>
+      <th>Difficulty</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @poses.each do |pose| %>
+      <tr>
+        <td><%= pose.english_name %></td>
+        <td><%= pose.sanskrit_name %></td>
+        <td><%= pose.sanskrit_pronunciation %></td>
+        <td><%= pose.difficulty %></td>
+        <td><%= link_to 'Show', pose %></td>
+        <td><%= link_to 'Edit', edit_pose_path(pose) %></td>
+        <td><%= link_to 'Destroy', pose, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pose', new_pose_path %>

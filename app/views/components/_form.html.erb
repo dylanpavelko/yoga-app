@@ -1,0 +1,39 @@
+<%= form_with(model: component, local: true) do |form| %>
+  <% if component.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(component.errors.count, "error") %> prohibited this component from being saved:</h2>
+
+      <ul>
+      <% component.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :parent_id %>
+    <%= form.select :parent_type, [Routine.name] %>
+    <%= form.text_field :parent_id, id: :component_parent_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_id %>
+    <%= form.select :content_type, [Step.name] %>
+    <%= form.text_field :content_id, id: :component_content_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order %>
+    <%= form.number_field :order, id: :component_order %>
+  </div>
+
+  <div class="field">
+    <%= form.label :repeat %>
+    <%= form.number_field :repeat, id: :component_repeat %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

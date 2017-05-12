@@ -1,0 +1,42 @@
+<%= form_with(model: pose, local: true) do |form| %>
+  <% if pose.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pose.errors.count, "error") %> prohibited this pose from being saved:</h2>
+
+      <ul>
+      <% pose.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :english_name %>
+    <%= form.text_field :english_name, id: :pose_english_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sanskrit_name %>
+    <%= form.text_field :sanskrit_name, id: :pose_sanskrit_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sanskrit_pronunciation %>
+    <%= form.text_field :sanskrit_pronunciation, id: :pose_sanskrit_pronunciation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :difficulty %>
+    <%= form.number_field :difficulty, id: :pose_difficulty %>
+  </div>
+
+  <div class="field">
+    <%= form.label :modification_of_id %>
+    <%= form.select :modification_of_id, options_for_select(@prime_poses.map{|p|[p.english_name, p.id]}, @pose.modification_of_id) , :include_blank => :true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

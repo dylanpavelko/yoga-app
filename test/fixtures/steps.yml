@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pose: one
+  direction: 1
+  setup_time: 1
+  pose_time: 1
+
+two:
+  pose: two
+  direction: 1
+  setup_time: 1
+  pose_time: 1

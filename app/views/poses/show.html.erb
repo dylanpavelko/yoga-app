@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>English name:</strong>
+  <%= @pose.english_name %>
+</p>
+
+<p>
+  <strong>Sanskrit name:</strong>
+  <%= @pose.sanskrit_name %>
+</p>
+
+<p>
+  <strong>Sanskrit pronunciation:</strong>
+  <%= @pose.sanskrit_pronunciation %>
+</p>
+
+<p>
+  <strong>Difficulty:</strong>
+  <%= @pose.difficulty %>
+</p>
+
+<% if @pose.modification_of %>
+  <p>
+    <strong>Modification Of:</strong>
+    <%= link_to @pose.modification_of.english_name, @pose.modification_of %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_pose_path(@pose) %> |
+<%= link_to 'Back', poses_path %>

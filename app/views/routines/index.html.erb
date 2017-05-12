@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Routines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @routines.each do |routine| %>
+      <tr>
+        <td><%= link_to routine.name, routine %></td>
+        <td><%= link_to 'Destroy', routine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Routine', new_routine_path %>

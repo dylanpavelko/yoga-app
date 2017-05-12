@@ -1,0 +1,37 @@
+<%= form_with(model: step, local: true) do |form| %>
+  <% if step.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(step.errors.count, "error") %> prohibited this step from being saved:</h2>
+
+      <ul>
+      <% step.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :pose_id %>
+    <%= form.select :pose_id, options_for_select(Pose.all.map{|p|[p.english_name, p.id]}, @step.pose_id) , :include_blank => :true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :direction %>
+    <%= form.number_field :direction, id: :step_direction %>
+  </div>
+
+  <div class="field">
+    <%= form.label :setup_time %>
+    <%= form.number_field :setup_time, id: :step_setup_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pose_time %>
+    <%= form.number_field :pose_time, id: :step_pose_time %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @routine.name %>
+</p>
+
+<ul>
+	<% @components.each do |component| %>
+		<li><%= link_to component.content.name, component.content %></li>
+	<% end %>
+</ul>
+
+<%= link_to 'Edit', edit_routine_path(@routine) %> |
+<%= link_to 'Back', routines_path %>

@@ -2,14 +2,39 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @routine.name %>
+  <%= @routine.name %> <%= link_to 'Edit', edit_routine_path(@routine) %>
 </p>
 
 <ul>
 	<% @components.each do |component| %>
 		<li><%= link_to component.content.name, component.content %></li>
 	<% end %>
+	<li>+   
+	  <input list="possible_components" name="new_component">
+	  <datalist id="possible_components">
+	    <% @poses.each do |pose| %>
+		    <option value="<%= pose.english_name %>"> 
+		<% end %>
+	  </datalist>
+
+	  direction 
+	  <strong>setup time</strong> <input type="number" name="set_up" min="0" value="3" style="width: 3em"> seconds
+	  <strong>pose time</strong> <input type="number" name="pose-time" min="0" value="30" style="width: 3em"> seconds
+	  <strong>repeats</strong>
+	  <input list="repetitions" name="repeat">
+	  <datalist id="repetitions">
+		    <option value="1 time"> 
+		    <option value="2 times">
+		    <option value="3 times"> 
+		    <option value="4 times"> 
+		    <option value="5 times"> 
+		    <option value="6 times"> 
+		    <option value="7 times"> 
+		    <option value="8 times"> 
+		    <option value="9 times"> 
+		    <option value="10 times">  	
+	  </datalist>
+	</li>
 </ul>
 
-<%= link_to 'Edit', edit_routine_path(@routine) %> |
-<%= link_to 'Back', routines_path %>
+

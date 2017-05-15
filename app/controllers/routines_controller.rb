@@ -11,6 +11,7 @@ class RoutinesController < ApplicationController
   # GET /routines/1.json
   def show
     @components = Component.where(parent_type: Routine.name).where(parent_id: @routine).order(:order)
+    @poses = Pose.all
   end
 
   # GET /routines/new

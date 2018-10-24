@@ -17,11 +17,14 @@
 		<% end %>
 	  </datalist>
 
-	  direction 
+	  
+  	<input type="range" min="-1" max="1" value="0" class="slider" id="direction">
+	
+	  
 	  <strong>setup time</strong> <input type="number" name="set_up" min="0" value="3" style="width: 3em"> seconds
 	  <strong>pose time</strong> <input type="number" name="pose-time" min="0" value="30" style="width: 3em"> seconds
 	  <strong>repeats</strong>
-	  <input list="repetitions" name="repeat">
+	  <input list="repetitions" name="repeat" size="9">
 	  <datalist id="repetitions">
 		    <option value="1 time"> 
 		    <option value="2 times">
@@ -37,4 +40,28 @@
 	</li>
 </ul>
 
+<p id="timer"></p>
 
+<script>
+  	
+  	//get all the steps
+  	var $steps = ["Triangle Pose to the right", "Triangle Pose to the left"];
+  	var $transition = [5, 5];
+  	var $pose = [20, 20];
+  	
+  	//for each step
+  		//display the step name (and direction)
+  		//count down the transition time
+  		//count down the pose time
+  	
+  	var $count = 0;
+  	var $step_count = 0;
+  	var $transition_count = 0;
+  	var $pose_time = 0;
+  	// Update the count every 1 second
+	var $x = setInterval(function() {
+		$count = $count + 1;
+		// Display the result in the element with id="timer"
+  		document.getElementById("timer").innerHTML = $count + "s ";
+	}, 1000);
+</script>

@@ -17,7 +17,7 @@
     <% @steps.each do |step| %>
       <tr>
         <td><%= link_to step.pose.english_name, step.pose %></td>
-        <td><%= step.direction? %></td>
+        <td><%= step.side %></td>
         <td><%= step.setup_time %></td>
         <td><%= step.pose_time %></td>
         <td><%= link_to 'Show', step %></td>

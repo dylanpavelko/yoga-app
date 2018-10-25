@@ -41,27 +41,67 @@
 </ul>
 
 <p id="timer"></p>
+<progress value="0" max="25"></progress>
 
 <script>
   	
   	//get all the steps
   	var $steps = ["Triangle Pose to the right", "Triangle Pose to the left"];
-  	var $transition = [5, 5];
-  	var $pose = [20, 20];
+  	var $transition = [5, 3];
+  	var $pose = [20, 11];
   	
   	//for each step
   		//display the step name (and direction)
   		//count down the transition time
   		//count down the pose time
   	
-  	var $count = 0;
-  	var $step_count = 0;
-  	var $transition_count = 0;
-  	var $pose_time = 0;
+  	var $count = 0; 			//total count of seconds
+  	var $step_count = 0;		//which step are we on
+  	var $transition_count = 0;	//how many seconds of transition are left
+  	var $pose_time = 0;			//how many second in the pose are left
+  	var $step_time = 0;
   	// Update the count every 1 second
 	var $x = setInterval(function() {
 		$count = $count + 1;
-		// Display the result in the element with id="timer"
-  		document.getElementById("timer").innerHTML = $count + "s ";
+		
+		if($pose_time == 0 && $transition_count == 0){
+			$transition_count = $transition[$step_count];
+			$pose_time = $pose[$step_count];
+			$step_count = $step_count + 1;
+			$step_time = 0;
+			
+			$total_step_time = $pose_time + $transition_count;
+			//set progress max to pose_time+transition count
+			$('progress').attr('max', $total_step_time);
+
+		}
+		
+		
+		$step_time = $step_time + 1;
+		
+		
+		if($transition_count != 0){
+			$transition_count = $transition_count - 1;
+			//set color to transition color
+		}else{
+			$pose_time = $pose_time - 1;
+			//set color to hold pose
+		}
+		
+		
+		if($step_count <= $steps.length){
+			// Display the result in the element with id="timer"
+	  		document.getElementById("timer").innerHTML = "Transition to " + $steps[$step_count - 1] 
+	  			+ " in " + $transition_count + "s"
+	  			+ " and hold for " + $pose_time + "s";
+	  			
+	  		$('progress').attr('value', $step_time);
+	  		
+	  		$percentage = Math.round (($step_time / $total_step_time) * 100);
+		}else{
+			document.getElementById("timer").innerHTML = "Congratulations You Finished the Routine!";
+		}
 	}, 1000);
+	
+
 </script>

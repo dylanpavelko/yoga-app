@@ -46,9 +46,21 @@
 <script>
   	
   	//get all the steps
-  	var $steps = ["Triangle Pose to the right", "Triangle Pose to the left"];
-  	var $transition = [5, 3];
-  	var $pose = [20, 11];
+  	var $steps = [
+  		<% @components.each do |component| %>
+  			"<%= component.content.name %>",
+  		<% end %>
+  		];
+  	var $transition = [
+  		<% @components.each do |component| %>
+  			<%= component.content.setup_time %>,
+  		<% end %>
+  		];
+  	var $pose = [
+  		<% @components.each do |component| %>
+  			<%= component.content.pose_time %>,
+  		<% end %>
+  		];
   	
   	//for each step
   		//display the step name (and direction)

@@ -32,8 +32,6 @@ ActiveRecord::Schema.define(version: 20170512032622) do
     t.integer "difficulty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "modification_of_id"
-    t.index ["modification_of_id"], name: "index_poses_on_modification_of_id"
   end
 
   create_table "routines", force: :cascade do |t|

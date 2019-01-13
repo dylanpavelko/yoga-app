@@ -53,7 +53,7 @@ group :development, :test do
   gem 'sqlite3'
 end
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.21'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

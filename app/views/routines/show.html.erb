@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
 <p>
   <strong>Name:</strong>
   <%= @routine.name %> <%= link_to 'Edit', edit_routine_path(@routine) %>
@@ -40,6 +40,7 @@
 	</li>
 </ul>
 
+<button id="start_button" onclick="run()">start routine</button>
 <h1 id="timer"></h1>
 <progress value="0" max="25"></progress>
 
@@ -72,15 +73,48 @@
   	var $transition_count = 0;	//how many seconds of transition are left
   	var $pose_time = 0;			//how many second in the pose are left
   	var $step_time = 0;
-  	// Update the count every 1 second
-	var $x = setInterval(function() {
+	var $notStarted = true;
+	
+	function run(){
+		beginRoutine();
+	}
+	
+	function check_second(){
+		
+	}
+	
+	function speakPose($s){
+		$step = $steps[$s];
+		$transition_count = $transition[$step_count];
+		$pose_time = $pose[$step_count];
+		if($notStarted == true){
+			speak("Let's begin");
+			$notStarted = false;
+		}
+		if($step_count == $steps.length){
+			speak("Nice work you have now completed this routine.");
+			speak("Namaste.");
+		}
+		else {
+			speak("Transition to " + $step + " and hold for " + $pose_time + " seconds");
+		}
+		
+	}
+
+  	
+  	
+  	//Update the count every 1 second
+	function beginRoutine(){
+		setInterval(function() {
 		$count = $count + 1;
 		
 		if($pose_time == 0 && $transition_count == 0){
+			speakPose($step_count);
 			$transition_count = $transition[$step_count];
 			$pose_time = $pose[$step_count];
 			$step_count = $step_count + 1;
 			$step_time = 0;
+			
 			
 			$total_step_time = $pose_time + $transition_count;
 			//set progress max to pose_time+transition count
@@ -106,14 +140,18 @@
 	  		document.getElementById("timer").innerHTML = "Transition to " + $steps[$step_count - 1] 
 	  			+ " in " + $transition_count + "s"
 	  			+ " and hold for " + $pose_time + "s";
-	  			
+	  		
 	  		$('progress').attr('value', $step_time);
 	  		
 	  		$percentage = Math.round (($step_time / $total_step_time) * 100);
 		}else{
 			document.getElementById("timer").innerHTML = "Congratulations You Finished the Routine!";
+			
 		}
 	}, 1000);
+	} 
 	
-
+function speak(words){
+	return responsiveVoice.speak(words, "Hindi Female", {rate: 0.85});
+}
 </script>
